@@ -1,0 +1,138 @@
+body{
+    
+  font-family: "Roboto Condensed", sans-serif !important;
+  font-optical-sizing: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+}
+.container{
+    flex: 1;
+}
+
+.navbar{
+    height: 5rem;
+    background-color: white;
+}
+.fa-v{
+    color: brown;
+}
+.span{
+    color:rgb(132, 170, 29);
+    font-size: 1.4rem;
+}
+
+.nav-links{
+    color: #222222 !important;
+}
+
+
+/* footer */
+.f-info-links ,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.f-info-socials i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+.f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.f-info-links a:hover{
+    text-decoration:underline;
+    align-items: center;
+}
+
+.f-info{
+    text-align: center;
+    display: flex;
+    height: 8rem;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* card styling */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100%;
+    object-fit: contain !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text p{
+    font-weight: 400 !important;
+}
+.listing-links{
+    text-decoration: none ;
+    color: #222222;
+}
+.listing-links:hover{
+    color: #222222;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+/* New Page */
+.add-btn{
+    width: 100px;
+    background-color: brown !important;
+    border: none !important;
+    border-radius: 30px;
+    margin: 20px;
+}
+.add-btn:hover{
+    background-color: rgb(90, 148, 32) !important;
+    color: #222222 !important;
+}
+
+.edit-btn{
+        width: 100px !important;
+    background-color: brown !important;
+    border: none !important;
+    border-radius: 30px;
+    margin: 20px;
+}
+.edit-btn:hover{
+    background-color: rgb(90, 148, 32) !important;
+    color: #222222 !important;
+}
+
+/* show ejs */
+.show-img{
+height: 45vh;
+}
+.btns{
+    display: flex !important;
+    
+}
+.del-btn{
+    width: 100px !important;
+    background-color: rgb(167, 17, 17) !important;
+ color: white !important;
+}
+.del-btn:hover{
+    background-color: rgb(43, 187, 7) !important;
+ color: white !important;
+}
+ .show-card{
+    padding-left: 0;
+    padding-right:0;
+ }
