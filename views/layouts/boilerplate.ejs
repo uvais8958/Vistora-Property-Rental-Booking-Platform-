@@ -22,7 +22,11 @@
 <body>
     <!-- Navbar -->
     <%- include("../includes/navbar.ejs") %>
-    <div class="container"> <%- body %></div>
+    <div class="container">
+        <!-- for flash message -->
+         <%- include("../includes/flash.ejs") %>
+        
+        <%- body %></div>
     <!-- footer -->
     <%- include("../includes/footer.ejs") %>
 

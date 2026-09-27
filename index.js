@@ -8,7 +8,11 @@ const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");//for boilerplate code
 const ExpressError=require("./utils/ExpressError");
-
+const session=require("express-session");
+const flash = require("connect-flash");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require("./models/user.js");
 
 const listings =require("./routes/listing.js");
 const reviews=require("./routes/review.js");
@@ -45,12 +49,54 @@ app.use(methodOverride("_method"));
 app.engine('ejs',ejsMate);
 app.use(express.static(path.join(__dirname,"public")));
 
+
+
+const sessionOption={
+       secret:"mysupersecretes",
+       resave:false,
+       saveUninitialized:true,
+       cookie:{
+        expires:Date.now() +7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        httpOnly:true
+       },
+};
+
+
+
 // route 
 app.get("/",(req,res)=>{
     res.send("Hi I am root");
 });
 
+app.use(session(sessionOption));
+app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authentiCate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
+})
+
+
+app.get("/demoUser",async(req,res)=>{
+    let fakeUser=new User ({
+        email:"uvais123@gmail.com",
+        username:"Uvais",
+
+    });
+    let registerdUser=await User.register(fakeUser,"hellow");
+    console.log(registerdUser);
+})
 
 
 app.use("/listings",listings);
