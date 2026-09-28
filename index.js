@@ -14,8 +14,10 @@ const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
 
-const listings =require("./routes/listing.js");
-const reviews=require("./routes/review.js");
+
+const listingsRouters =require("./routes/listing.js");
+const reviewsRouters=require("./routes/review.js");
+const usersRouters=require("./routes/user.js");
 
 
 
@@ -72,14 +74,15 @@ app.get("/",(req,res)=>{
 app.use(session(sessionOption));
 app.use(flash());
 
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authentiCate()));
+passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
 
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
@@ -95,13 +98,17 @@ app.get("/demoUser",async(req,res)=>{
 
     });
     let registerdUser=await User.register(fakeUser,"hellow");
-    console.log(registerdUser);
+    console.log("User login");
+    res.send(registerdUser);
+
 })
 
 
-app.use("/listings",listings);
+app.use("/listings",listingsRouters);
 
-app.use("/listings/:id/reviews",reviews);
+app.use("/listings/:id/reviews",reviewsRouters);
+
+app.use("/",usersRouters);
 // app.get("/testListing",async (req,res)=>{
 //     let sampleListing=new Listing({
 //         title:"My new House",

@@ -36,6 +36,14 @@ The project focuses on implementing real-world **full-stack web development conc
 
 ![Property-New-add](/assets/screenshorts/new-listing-add.png)
 
+## Signup-Form
+
+![signup](/assets/screenshorts/signup.png)
+
+## Login-Form
+
+![loging](/assets/screenshorts/login.png)
+
 ### ⭐ Reviews & Ratings
 
 * Users can add reviews to properties

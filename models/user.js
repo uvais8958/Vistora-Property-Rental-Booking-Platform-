@@ -1,18 +1,15 @@
-const mongoose=require("mongoose");
-const Schema=mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const passportLocalMangoose=
-require("passport-local-mongoose");
+const passportLocalMongoose = require("passport-local-mongoose").default;
 
-const userSchema=new Schema ({
-    email:{
-        type:String,
-        required:true,
+const userSchema = new Schema({
+    email: {
+        type: String,
+        required: true,
     },
-
 });
 
-//userName salting and password automatically required
-userSchema.plugin(passportLocalMangoose);
+userSchema.plugin(passportLocalMongoose);
 
-module.exports=mongoose.model("User",userSchema);
+module.exports = mongoose.model('User', userSchema);
