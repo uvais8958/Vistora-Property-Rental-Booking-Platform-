@@ -15,9 +15,15 @@ try{
     const newUser=new User({email,username});
     const registeredUser=await User.register(newUser,password);
     console.log(registeredUser);
-    req.flash("success","Welcome to Vistora");
-    res.redirect("/listings");
 
+    //login after signup
+    req.login(registeredUser,(error)=>{
+        if(error){
+            next(error);
+        }
+        req.flash("success","Welcome to Vistora");
+        res.redirect("/listings");
+    })
        }catch(e){
        req.flash("error",e.message);
        res.redirect("/signup");
