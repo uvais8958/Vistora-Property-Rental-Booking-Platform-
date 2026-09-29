@@ -44,6 +44,13 @@ The project focuses on implementing real-world **full-stack web development conc
 
 ![loging](/assets/screenshorts/login.png)
 
+## Signup/Login
+![logout/login](/assets/screenshorts/Signup-login-navbar.png)
+
+## Logout 
+
+![/logout](/assets/screenshorts/Logout-navbar.png)
+
 ### ⭐ Reviews & Ratings
 
 * Users can add reviews to properties

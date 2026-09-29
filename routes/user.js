@@ -35,9 +35,19 @@ router.post("/login",
         failureFlash:true,
     }),
     async(req,res)=>{
+        console.log(req.user);
         req.flash("success","Welcome back to the Vistora!")
         res.redirect("/listings");
     }
-)
+);
+router.get("/logout",(req,res,next)=>{
+    req.logout((error)=>{
+        if(error){
+            return next(error);
+        }
+        req.flash("success","you are logged out");
+        res.redirect("/listings");
+    });
+});
 
 module.exports=router;
