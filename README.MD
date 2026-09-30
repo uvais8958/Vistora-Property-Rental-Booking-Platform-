@@ -51,6 +51,14 @@ The project focuses on implementing real-world **full-stack web development conc
 
 ![/logout](/assets/screenshorts/Logout-navbar.png)
 
+## All authenticate functionality add 
+
+  ##  delete post  only own post 
+  ![delete](/assets/screenshorts/authenticate-delete.png)
+  
+  ## edite post  only own post
+  ![!edite](/assets/screenshorts/authenticate-edit.png)
+
 ### ⭐ Reviews & Ratings
 
 * Users can add reviews to properties

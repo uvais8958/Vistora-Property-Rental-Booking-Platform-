@@ -1,46 +1,24 @@
 const express=require("express");
 const router=express.Router({mergeParams:true});
 const wrapAsync=require("../utils/wrapAsync");
-const ExpressError=require("../utils/ExpressError");
-const {reviewSchema}=require("../schemaJoi.js");
 const Review=require("../models/reviews.js");
 const Listing=require("../models/listing.js");
-
-
-
-
-// Validation Review
-
-const validationReview = (req, res, next) => {
-
-    let { error } = reviewSchema.validate(req.body);
-
-    console.log(error);
-
-    if (error) {
-        let errMsg = error.details
-            .map((el) => el.message)
-            .join(",");
-
-        throw new ExpressError(400, errMsg);
-    }
-
-    next();
-};
-
-
+const {validationReview, isLogedIn}=require("../isAuthenticatedMiddleware.js");
 
 
 
 //Reviews
 //POST Routes
-router.post("/",validationReview,wrapAsync
+router.post("/",
+    isLogedIn,
+    validationReview, 
+    wrapAsync
      (async(req,res)=>{
        let listing=await Listing.findById(req.params.id);
-       console.log("Review",req.body.review);
           let newReview=new Review(req.body.review);
-         
+          newReview.author=req.user._id; 
           listing.reviews.push(newReview);
+          console.log(newReview);
           await newReview.save();
           await listing.save();
           req.flash("success","New Review Created!");
