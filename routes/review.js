@@ -3,7 +3,7 @@ const router=express.Router({mergeParams:true});
 const wrapAsync=require("../utils/wrapAsync");
 const Review=require("../models/reviews.js");
 const Listing=require("../models/listing.js");
-const {validationReview, isLogedIn}=require("../isAuthenticatedMiddleware.js");
+const {validationReview, isLogedIn,isReviewAuther}=require("../isAuthenticatedMiddleware.js");
 
 
 
@@ -18,7 +18,6 @@ router.post("/",
           let newReview=new Review(req.body.review);
           newReview.author=req.user._id; 
           listing.reviews.push(newReview);
-          console.log(newReview);
           await newReview.save();
           await listing.save();
           req.flash("success","New Review Created!");
@@ -31,6 +30,8 @@ router.post("/",
 
 // Reviews Post delete
 router.delete("/:reviewId",
+    isLogedIn,
+    isReviewAuther,
     wrapAsync(async(req,res)=>{
         let {id,reviewId}=req.params;
         await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
