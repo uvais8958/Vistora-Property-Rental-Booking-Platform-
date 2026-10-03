@@ -11,40 +11,35 @@ const listingControllers=require("../controllers/listings.js");
 
 
 //Index Route
-router.get("/",wrapAsync(listingControllers.index)); 
+router.route("/")
+.get(wrapAsync(listingControllers.index)) 
+// create route
+ .post(validationListing,
+    isLogedIn,
+    wrapAsync,listingControllers.renderCreateForm);
+
 
 // New Route
 router.get("/new",isLogedIn, listingControllers.renderNewForm);
 
 
 // Show Route
-router.get("/:id",wrapAsync(listingControllers.showListing));
-
-
-// create route
-router.post("/",
-    validationListing,
-    isLogedIn,
-    wrapAsync,listingControllers.renderCreateForm);
-
+router.route("/:id")
+.get(wrapAsync(listingControllers.showListing))
 
 // Update Route
-router.put("/:id",
+.put(
     isLogedIn,
     isOwner,
      validationListing,
-    wrapAsync ,listingControllers.updateForm );
-
-
-
+    wrapAsync ,listingControllers.updateForm )
     // Edit Route
-router.get("/:id/edit",validationListing,
+.get(validationListing,
      isLogedIn,
      isOwner,
-    wrapAsync, listingControllers.editForm);
-
+    wrapAsync, listingControllers.editForm)
 // Delete Route
-router.delete("/:id",
+.delete(
     isLogedIn,
     isOwner,
     wrapAsync , listingControllers.deleteForm);
