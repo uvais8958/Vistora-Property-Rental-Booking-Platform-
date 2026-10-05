@@ -62,6 +62,9 @@ The project focuses on implementing real-world **full-stack web development conc
   ## Review authenticate and add multiple user
   ![reviewAther](/assets/screenshorts/review-add-multiple-user.png)
 
+  ## Review Rating With stars by the user
+  ![reting](/assets/screenshorts/rating-stars.png)
+
 ### ⭐ Reviews & Ratings
 
 * Users can add reviews to properties
