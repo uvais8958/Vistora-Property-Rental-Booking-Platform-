@@ -5,19 +5,24 @@ const Listing=require("../models/listing.js");
 const {isLogedIn,isOwner,validationListing}=require("../isAuthenticatedMiddleware.js");
 const listingControllers=require("../controllers/listings.js");
 
-
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 
 
 
 //Index Route
-router.route("/")
+router
+.route("/")
 .get(wrapAsync(listingControllers.index)) 
 // create route
- .post(validationListing,
-    isLogedIn,
-    wrapAsync,listingControllers.renderCreateForm);
+//  .post(validationListing,
+//     isLogedIn,
+//     wrapAsync (listingControllers.renderCreateForm));
 
+.post(upload.single('listing[image]'),(req,res)=>{
+    res.send(req.file);
+})
 
 // New Route
 router.get("/new",isLogedIn, listingControllers.renderNewForm);

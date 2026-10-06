@@ -1,5 +1,9 @@
-// Basic setup of Vistora Project
+if(process.env.NODE_ENV !="production"){
+require("dotenv").config();
+}
 
+
+// Basic setup of Vistora Project
 const express=require("express");
 const app=express();
 const port =8080;
